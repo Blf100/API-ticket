@@ -4,6 +4,8 @@ import express from "express";
 // Importing routes
 import { routes } from "./routes";
 
+import { locationsRoutes } from "./routes";
+
 // instantiating the express
 const app = express();
 
