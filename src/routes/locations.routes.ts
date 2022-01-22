@@ -39,6 +39,8 @@ locationsRoutes.post("/locations", async (request, response) => {
       itemsId
     }
   });
+
+  return response.json(locations);
 });
 
 

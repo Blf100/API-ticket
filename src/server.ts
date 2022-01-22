@@ -11,6 +11,7 @@ const app = express();
 
 // Using routes
 app.use(routes);
+app.use(locationsRoutes);
 
 // Port for the server to work
 app.listen(3333, () => {
