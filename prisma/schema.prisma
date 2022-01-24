@@ -11,32 +11,33 @@ datasource db {
 }
 
 model User {
-  id         Int      @id @default(autoincrement())
-  name       String
-  cpf        Int
-  city       String
-  uf         String
-  sex        String
-  created_at DateTime @default(now())
+  id           Int      @id @default(autoincrement())
+  name         String
+  cpf          Int      @unique
+  email        String   @unique
+  city         String
+  uf           String
+  sex          String
+  created_at   DateTime @default(now())
   tickets_user Ticket[]
 
 }
 
 model Event {
-  id    Int      @id @default(autoincrement())
-  title String
-  place String
-  date  String
-  created_at DateTime @default(now())
+  id            Int      @id @default(autoincrement())
+  title         String
+  place         String
+  date          DateTime
+  created_at    DateTime @default(now())
   tickets_event Ticket[]
 }
 
 model Ticket {
-  id Int @id @default(autoincrement())
-  price Float
+  id         Int      @id @default(autoincrement())
+  price      Float
   created_at DateTime @default(now())
-  holder User @relation(fields: [id_user], references: [id])
-  id_user Int
-  ocurrence Event @relation(fields: [id_event], references: [id])
-  id_event Int
+  holder     User     @relation(fields: [id_user], references: [id])
+  id_user    Int
+  ocurrence  Event    @relation(fields: [id_event], references: [id])
+  id_event   Int
 }
