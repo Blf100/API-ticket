@@ -10,23 +10,33 @@ datasource db {
   url      = "file:./dev.db"
 }
 
-model Locations {
-  id        Int     @id @default(autoincrement())
-  name      String
-  image     String
-  email     String  @unique
-  whatsapp  String  @unique
-  latitude  Decimal
-  longitude Decimal
-  city      String
-  uf        String
-  items     Items   @relation(fields: [itemsId], references: [id])
-  itemsId   Int
+model User {
+  id         Int      @id @default(autoincrement())
+  name       String
+  cpf        Int
+  city       String
+  uf         String
+  sex        String
+  created_at DateTime @default(now())
+  tickets_user Ticket[]
+
 }
 
-model Items {
-  id        Int         @id @default(autoincrement())
-  title     String
-  image     String
-  Locations Locations[]
+model Event {
+  id    Int      @id @default(autoincrement())
+  title String
+  place String
+  date  String
+  created_at DateTime @default(now())
+  tickets_event Ticket[]
+}
+
+model Ticket {
+  id Int @id @default(autoincrement())
+  price Float
+  created_at DateTime @default(now())
+  holder User @relation(fields: [id_user], references: [id])
+  id_user Int
+  ocurrence Event @relation(fields: [id_event], references: [id])
+  id_event Int
 }
