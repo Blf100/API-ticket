@@ -85,13 +85,13 @@ userRoutes.put("user", async (request, response) => {
     where: {id: Number(id)}, 
     data: {
       name,
-    cpf,
-    email,
-    city,
-    uf,
-    sex,
-    created_at,
-    tickets_user
+      cpf,
+      email,
+      city,
+      uf,
+      sex,
+      created_at,
+      tickets_user
     }
   });
 
@@ -110,7 +110,7 @@ userRoutes.delete("/user", async (request, response) => {
 
   const user = await prisma.user.findUnique({where: {id: Number(id)}});
 
-  if(!id) {
+  if(!user) {
     return response.json({message: "User not found"});
   }
 
