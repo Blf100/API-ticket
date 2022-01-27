@@ -42,8 +42,7 @@ eventRoutes.post("/event",  async (request, response) => {
 
 eventRoutes.get("/events",  async (request, response) => {
   try {
-    const { id } = request.headers;
-
+    
     const events = await prisma.event.findMany();
 
     return response.json({events});
